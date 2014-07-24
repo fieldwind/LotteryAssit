@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0299C215-16B8-4437-8DBF-EBA514604F08</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LotteryAssit</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>06E31704-6A29-4D9D-8ACB-1A2DB1DE1D9F</key>
+		<string>https://github.com/fieldwind/LotteryAssit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LotteryAssit.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>06E31704-6A29-4D9D-8ACB-1A2DB1DE1D9F</key>
+		<string>../..</string>
+		<key>70B471F6-B3D3-4E35-920A-D4E7944AC3D0</key>
+		<string>../../LotteryAssit</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/fieldwind/LotteryAssit.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>06E31704-6A29-4D9D-8ACB-1A2DB1DE1D9F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>70B471F6-B3D3-4E35-920A-D4E7944AC3D0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LotteryAssit</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>06E31704-6A29-4D9D-8ACB-1A2DB1DE1D9F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LotteryAssit2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

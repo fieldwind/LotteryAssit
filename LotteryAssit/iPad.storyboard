@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="1O9-zV-frf">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="4lo-z3-oy4">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="1O9-zV-frf" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WH2-Kg-ktr">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="twg-ZM-viW" kind="relationship" relationship="rootViewController" id="gEB-8u-YZ1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9fO-yp-H5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1604" y="-503"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="5n5-G9-W3h">
+            <objects>
+                <viewController storyboardIdentifier="GSWebViewController" id="twg-ZM-viW" customClass="GSWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A3K-1M-o4N"/>
+                        <viewControllerLayoutGuide type="bottom" id="YEZ-lS-dQO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wT7-gH-oxd" customClass="UIWebView">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zkh-Zu-jwW"/>
+                    <connections>
+                        <outlet property="webView" destination="wT7-gH-oxd" id="XxA-oA-akb"/>
+                        <segue destination="ylu-wv-c5e" kind="push" identifier="web2Map" id="PHr-fG-ivi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t49-fr-sCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-350" y="-503"/>
+        </scene>
+        <!--Map View Controller - 站点浏览-->
+        <scene sceneID="5jN-1t-zTQ">
+            <objects>
+                <viewController storyboardIdentifier="GIMapViewController" id="ylu-wv-c5e" customClass="GIMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1kK-jE-7cg"/>
+                        <viewControllerLayoutGuide type="bottom" id="V7f-1O-BMt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kWG-cp-qN2" customClass="MKMapView">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="站点浏览" id="htk-3Z-7F4">
+                        <barButtonItem key="leftBarButtonItem" image="UIButtonBarPlayLandscape2.png" id="B3Y-Mo-WuQ">
+                            <connections>
+                                <action selector="backAct:" destination="ylu-wv-c5e" id="X32-4C-DJL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="kWG-cp-qN2" id="8EV-aT-ijI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hDT-CA-7lL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751" y="-503"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="UIButtonBarPlayLandscape2.png" width="12" height="14"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
