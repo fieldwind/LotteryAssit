@@ -103,7 +103,7 @@
     NSLog(@"***************** didReceiveRemoteNotification");
     NSLog(@"\napns -> [EnvPostTipListData readJSonString:result],Receive Data:\n%@", userInfo);
     //把icon上的标记数字设置为0,
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    //[[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     //    AudioServicesPlaySystemSound(4095);
