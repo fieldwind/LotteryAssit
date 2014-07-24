@@ -118,7 +118,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
-//    NSString* token = [NSString stringWithFormat:@"%@",deviceToken];
+//    NSString* token1 = [NSString stringWithFormat:@"%@",deviceToken];
 //    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
 //    token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
 //    token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
