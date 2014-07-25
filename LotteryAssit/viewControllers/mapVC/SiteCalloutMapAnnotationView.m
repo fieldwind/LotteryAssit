@@ -163,7 +163,7 @@
     str = [NSString stringWithFormat:@"编号: %@",self.siteInfo.logical_number];
     self.IdLabel = [self createLabel1:str];
     str = [NSString stringWithFormat:@"电话: %@",self.siteInfo.phone];
-    str = [NSString stringWithFormat:@"电话: 13322221111"];
+    //str = [NSString stringWithFormat:@"电话: 13322221111"];
     self.telLabel = [self createLabel2:str];
     
     str = [NSString stringWithFormat:@"地址: %@", self.siteInfo.address];
