@@ -140,7 +140,7 @@ BOOL hadCheckLocationService;
     //init localmanager
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy =  kCLLocationAccuracyBest;//kCLLocationAccuracyBestForNavigation; //
+    self.locationManager.desiredAccuracy =  kCLLocationAccuracyBest;//kCLLocationAccuracyBestForNavigation; //kCLLocationAccuracyHundredMeters
     [self.locationManager startUpdatingLocation];
 }
 

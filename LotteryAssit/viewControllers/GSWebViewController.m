@@ -77,7 +77,7 @@
 //    //self.navigationController.navigationBar.backItem.leftBarButtonItem.title = @"后退";
     
     //dbg code
-#if 0
+#if 1
     WSSite* st = [[WSSite alloc]init];
     st.siteID = @"4028810e42784a570142786cdff50084";
     NSArray* testarr = [NSArray arrayWithObjects:st, nil];
