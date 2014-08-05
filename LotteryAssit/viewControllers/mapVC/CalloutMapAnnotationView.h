@@ -21,6 +21,7 @@
 
 @property (nonatomic, retain) MKAnnotationView *parentAnnotationView;
 @property (nonatomic, retain) MKMapView *mapView;
+@property (nonatomic, retain) UIColor *contentBkgColor;
 @property (nonatomic, readonly) UIView *contentView;
 @property (nonatomic) CGPoint offsetFromParent;
 @property (nonatomic) CGFloat contentHeight;

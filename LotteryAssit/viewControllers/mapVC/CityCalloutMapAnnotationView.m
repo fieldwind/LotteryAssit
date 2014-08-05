@@ -37,6 +37,7 @@
 
 - (id) initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
 	if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
+        self.contentBkgColor = [UIColor orangeColor];
         UITapGestureRecognizer* tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes:)];
         [self addGestureRecognizer:tapGes];
         [self uiInit];
@@ -49,8 +50,8 @@
 
 -(void)uiInit
 {
-    self.contentHeight = 38.0f;
-    self.contentWidth = 138.0f; //140.0f;
+    self.contentHeight = 28.0f;
+    self.contentWidth = 70.0f;
     
     offsetX = 5.0f;
     offsetY = 5.0f;
@@ -58,10 +59,11 @@
     labelIndx = 0;
     
     
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(offsetX*2, offsetY, 60, labelHeight)];
-    [label setBackgroundColor:[UIColor orangeColor]];
+    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, offsetY, self.contentWidth-offsetX*3, labelHeight)];
+    [label setBackgroundColor:[UIColor clearColor]];
     [label setTextColor:[UIColor blackColor]];
-    label.text = self.cityInfo.betting_num;
+    label.text = @"55"; //self.cityInfo.betting_num;
+    [label setTextAlignment:NSTextAlignmentCenter];
     
     [self.contentView addSubview:label];
     
@@ -76,9 +78,9 @@
     CGPoint pt = [tapGest locationInView:view];
     //NSLog(@"tapGEs:%@",[sender class]);
     
-    if([self.delegate respondsToSelector:@selector(triggerDistanceBtn: annotation:)]){
-        [self.delegate triggerDistanceBtn:[self.distanceTxt.text doubleValue] annotation:self.annotation];
-    }
+//    if([self.delegate respondsToSelector:@selector(triggerDistanceBtn: annotation:)]){
+//        [self.delegate triggerDistanceBtn:[self.distanceTxt.text doubleValue] annotation:self.annotation];
+//    }
     
 }
 

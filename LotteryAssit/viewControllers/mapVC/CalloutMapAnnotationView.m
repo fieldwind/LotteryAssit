@@ -9,7 +9,7 @@
 #define CalloutMapAnnotationViewHeightAboveParent 2.0f
 
 @interface CalloutMapAnnotationView(){
-    UIColor* _bkgColor;
+   // UIColor* _bkgColor;
 }
 
 @property (nonatomic, readonly) CGFloat yShadowOffset;
@@ -45,7 +45,7 @@
 		self.contentHeight = 80.0;
 		self.offsetFromParent = CGPointMake(8, -14); //this works for MKPinAnnotationView
 		self.enabled = NO;
-        _bkgColor = HexColor2UIColor(240, 235, 222, 1); //[UIColor whiteColor]; //[UIColor clearColor]; //
+        self.contentBkgColor = HexColor2UIColor(240, 235, 222, 1); //[UIColor whiteColor]; //[UIColor clearColor]; //
 		self.backgroundColor = [UIColor clearColor];
 	}
 	return self;
@@ -249,7 +249,7 @@
 
 	
 	//Fill Callout Bubble & Add Shadow
-	color = _bkgColor;
+	color = self.contentBkgColor;
     //color = [[UIColor blackColor] colorWithAlphaComponent:.6];
 	[color setFill];
 	CGContextAddPath(context, path);
@@ -260,7 +260,7 @@
     
     
 	//Stroke Callout Bubble
-	color = _bkgColor;
+	color = self.contentBkgColor;
     //color = [[UIColor darkGrayColor] colorWithAlphaComponent:.9];
 	[color setStroke];
 	CGContextSetLineWidth(context, stroke);
@@ -357,7 +357,7 @@
 - (UIView *)contentView {
 	if (!_contentView) {
 		_contentView = [[UIView alloc] init];
-		self.contentView.backgroundColor = _bkgColor; //[UIColor clearColor];
+		self.contentView.backgroundColor = self.contentBkgColor; //[UIColor clearColor];
 		self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		[self addSubview:self.contentView];
 	}
