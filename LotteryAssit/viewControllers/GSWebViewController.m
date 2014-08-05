@@ -188,7 +188,10 @@
 #endif
     {
         _isGotoNextPage = YES;
+        [self performSegueWithIdentifier:@"web2Map" sender:nil];
 
+
+#if 0
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [[UserDataManager sharedManager]accessSites:^(NSArray *array, NSError *error) {
                 if(!error && array){
@@ -218,6 +221,8 @@
             } userID:[UserDataManager sharedManager].currUser];
             
         });
+        
+#endif
         return NO;
     }
     return YES;
@@ -256,9 +261,9 @@
     if([segue.identifier isEqualToString:@"web2Map"]){
         self.navigationController.navigationBarHidden = NO;
         GIMapViewController* mapVC = [segue destinationViewController];
-        NSArray* params = (NSArray*)sender;
-        mapVC.dateSource = [params objectAtIndex:0];
-        mapVC.orgCode = [params objectAtIndex:1];
+//        NSArray* params = (NSArray*)sender;
+//        mapVC.dateSource = [params objectAtIndex:0];
+//        mapVC.orgName = [params objectAtIndex:1];
     }
 }
 

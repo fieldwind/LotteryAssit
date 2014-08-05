@@ -147,4 +147,27 @@
     }];
 }
 
+
+-(void)accessCitys:(void (^)(WSCitys *, NSError *))response orgCode:(NSString *)orgCode
+{
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    NSString* url = [NSString stringWithFormat:@"%@oa_ipad!getsheng.action",Server_BaseURL];
+    NSDictionary* dict = nil;
+    if(orgCode){
+        //http://10.80.9.195:8080/welfare_lottery/oa_ipad!getqv.action
+        url = [NSString stringWithFormat:@"%@oa_ipad!getqv.action",Server_BaseURL];
+        [NSDictionary dictionaryWithObjectsAndKeys:
+         orgCode,@"org_code",
+         nil];
+    }
+    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        WSCitys* citys = [[WSCitys alloc]initFromObj:responseObject];
+        response(citys,nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+        response(nil,error);
+    }];
+}
+
+
 @end

@@ -15,7 +15,11 @@
 @interface GIMapViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate,SiteAnoViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic,retain) NSArray* dateSource;
+@property (nonatomic,retain) NSArray* cityArray;
+@property (nonatomic,retain) NSArray* townArray;
+@property (nonatomic,retain) NSArray* siteArray;
+
+//@property (nonatomic,retain) NSString* orgName;
 @property (nonatomic,retain) NSString* orgCode;
 
 @end

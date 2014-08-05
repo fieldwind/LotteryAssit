@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WSClass.h"
 
 @class WSSite;
 
@@ -22,5 +23,7 @@
 -(void)accessSites:(void (^)(NSArray* array, NSError* error))response userID:(NSString*)userID;
 -(void)accessSite:(void(^)(id siteInfo, NSError* error))response siteInfo:(WSSite*)siteInfo;
 -(void)accessImage:(void(^)(NSData* img, NSError* error))response imageid:(NSString*)imageid;
+-(void)accessCitys:(void (^)(WSCitys* array, NSError* error))response orgCode:(NSString*)orgCode;
+
 
 @end

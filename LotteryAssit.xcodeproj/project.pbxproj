@@ -69,6 +69,8 @@
 		E7CC320B197392BF002A0A4C /* WSClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CC320A197392BF002A0A4C /* WSClass.m */; };
 		E7CC322F1973A5A1002A0A4C /* NSString+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CC322E1973A5A1002A0A4C /* NSString+JSON.m */; };
 		E7CC32321973A68B002A0A4C /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CC32311973A68B002A0A4C /* NSObject+JSON.m */; };
+		E7D0DE191990BB1100B0DD23 /* GIMapViewController+Help.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D0DE181990BB1100B0DD23 /* GIMapViewController+Help.m */; };
+		E7D0DE1C1990C2F200B0DD23 /* CityCalloutMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D0DE1B1990C2F200B0DD23 /* CityCalloutMapAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,10 @@
 		E7CC322E1973A5A1002A0A4C /* NSString+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+JSON.m"; path = "LotteryAssit/source/NSString+JSON.m"; sourceTree = "<group>"; };
 		E7CC32301973A68B002A0A4C /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+JSON.h"; path = "LotteryAssit/source/NSObject+JSON.h"; sourceTree = "<group>"; };
 		E7CC32311973A68B002A0A4C /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+JSON.m"; path = "LotteryAssit/source/NSObject+JSON.m"; sourceTree = "<group>"; };
+		E7D0DE171990BB1100B0DD23 /* GIMapViewController+Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GIMapViewController+Help.h"; sourceTree = "<group>"; };
+		E7D0DE181990BB1100B0DD23 /* GIMapViewController+Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GIMapViewController+Help.m"; sourceTree = "<group>"; };
+		E7D0DE1A1990C2F200B0DD23 /* CityCalloutMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCalloutMapAnnotationView.h; sourceTree = "<group>"; };
+		E7D0DE1B1990C2F200B0DD23 /* CityCalloutMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCalloutMapAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +286,8 @@
 			children = (
 				E7ABC6061976257300FFB45F /* GIMapViewController.h */,
 				E7ABC6071976257300FFB45F /* GIMapViewController.m */,
+				E7D0DE171990BB1100B0DD23 /* GIMapViewController+Help.h */,
+				E7D0DE181990BB1100B0DD23 /* GIMapViewController+Help.m */,
 				E7A7BC42197F4B3D00A096AA /* GSMapAnnotation.h */,
 				E7A7BC43197F4B3D00A096AA /* GSMapAnnotation.m */,
 				E7A7BC45197F4CF600A096AA /* WSAnnotation.h */,
@@ -292,6 +300,8 @@
 				E71424CC1977A2F7004232EA /* GIEleViewController.m */,
 				E71C1A9D1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.h */,
 				E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */,
+				E7D0DE1A1990C2F200B0DD23 /* CityCalloutMapAnnotationView.h */,
+				E7D0DE1B1990C2F200B0DD23 /* CityCalloutMapAnnotationView.m */,
 			);
 			path = mapVC;
 			sourceTree = "<group>";
@@ -592,6 +602,7 @@
 				E793BA4F197C9C990083B999 /* AFHTTPSessionManager.m in Sources */,
 				E7ABC6051976250700FFB45F /* SiteCalloutMapAnnotationView.m in Sources */,
 				E793BA54197C9C990083B999 /* AFURLResponseSerialization.m in Sources */,
+				E7D0DE1C1990C2F200B0DD23 /* CityCalloutMapAnnotationView.m in Sources */,
 				E7A7BC44197F4B3D00A096AA /* GSMapAnnotation.m in Sources */,
 				E793BA53197C9C990083B999 /* AFURLRequestSerialization.m in Sources */,
 				E7ABC6041976250700FFB45F /* CalloutMapAnnotationView.m in Sources */,
@@ -605,6 +616,7 @@
 				E7CC32071973875A002A0A4C /* AppDelegate+APNS.m in Sources */,
 				E793BA57197C9C990083B999 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				E7A7BC4A197F4F4C00A096AA /* MKMapView+Operation.m in Sources */,
+				E7D0DE191990BB1100B0DD23 /* GIMapViewController+Help.m in Sources */,
 				E7CC31F8197369FB002A0A4C /* GSTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,8 +7,10 @@
 //
 
 #import "GIMapViewController.h"
+#import "GIMapViewController+Help.h"
 #import "WSAnnotation.h"
 #import "LocalCalloutMapAnnotationView.h"
+#import "CityCalloutMapAnnotationView.h"
 #import "WSClass.h"
 #import "UserDataManager.h"
 #import <objc/runtime.h>
@@ -22,17 +24,21 @@ typedef enum {
     rs_finish
 }routeStatus;
 
-BOOL hadCheckLocationService;
+
+
 
 @interface GIMapViewController (){
     CLPlacemark *thePlacemark;
     MKRoute *routeDetails;
     long spanX ; //meters
     long spanY ;
+    long showMapLevel; //0,province, 1,city, 2,town
     
     CLLocationCoordinate2D currPos;
     CLLocationCoordinate2D desPos;
     routeStatus status;
+    
+    
 }
 
 @property (nonatomic, retain) CalloutMapAnnotation *calloutAnnotation;
@@ -74,12 +80,13 @@ BOOL hadCheckLocationService;
     
     self.mapView.delegate = self;
     
-    [self initLoadCoordinate];
+    [self loacteCity:nil];
     
+    //[self initLoadCoordinate];
     
-    [self initSiteAnnotation];
     
 }
+
 
 -(void)initLoadCoordinate
 {
@@ -88,13 +95,11 @@ BOOL hadCheckLocationService;
     spanX = 3000; //12500;
     spanY = spanX; // 2500;
     
-    //coordinate with get city
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     
     //dbg code
 #if 1
-    self.orgCode = @"杭州市滨江区创新大厦"; //@"杭州市滨江区彩虹城"; //@"ZIP CODE 310000";
-    for(WSSite* site in self.dateSource){
+    //NSString* orgName = @"杭州市滨江区创新大厦"; //@"杭州市滨江区彩虹城"; //@"ZIP CODE 310000";
+    for(WSSite* site in self.siteArray){
         if([site.siteID isEqualToString:@"4028810e42784a570142786cdff50084"]){
             CLLocationCoordinate2D coordinate = {desPos.latitude,desPos.longitude};
             site.lat = coordinate.latitude;
@@ -113,24 +118,64 @@ BOOL hadCheckLocationService;
 #endif
     
     
-
     
-    [geocoder geocodeAddressString:self.orgCode completionHandler:^(NSArray *placemarks, NSError *error) {
-        if(error){
-            NSLog(@"%@",error);
-        }else{
-            CLPlacemark* place = [placemarks lastObject];
-//            for(CLPlacemark* place in placemarks){
-//                //NSLog(@"name:%@",place.name);
-//                NSLog(@"%@",place);
-//            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(place.location.coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
-            });
-        }
+}
 
-    }];
+
+
+
+-(void)loacteCity:(NSString*)orgCode
+{
+    [[UserDataManager sharedManager]accessCitys:^(WSCitys *citys, NSError *error) {
+        NSString* orgName;
+        if(!orgCode){
+            if(citys.level == 1){
+                orgName = @"浙江省金华市";
+                showMapLevel = 0;
+            }else if([citys.cityArray count]){
+                WSCity* city = [citys.cityArray objectAtIndex:0];
+                orgName = city.org_name;
+                showMapLevel = 1;
+            }
+        }else if([citys.cityArray count]){
+            WSCity* city = [citys.cityArray objectAtIndex:0];
+            orgName = city.name;
+            showMapLevel = 1;
+        }
+        if(showMapLevel == 0){
+            self.cityArray = citys.cityArray;
+        }else{
+            self.townArray = citys.cityArray;
+        }
+        
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        
+        
+        [geocoder geocodeAddressString:orgName completionHandler:^(NSArray *placemarks, NSError *error) {
+            if(error){
+                NSLog(@"%@",error);
+            }else{
+                CLPlacemark* place = [placemarks lastObject];
+                for(CLPlacemark* place in placemarks){
+                    //NSLog(@"name:%@",place.name);
+                    NSLog(@"%@",place);
+                }
+                
+                spanX = [self spanWithMapLevel:showMapLevel];
+                spanY = spanX;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(place.location.coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
+                    [self addAnnotation:[CityMapAnnotation class]];
+                });
+            }
+            
+        }];
+        
+    } orgCode:orgCode];
+    
+   
+    
     
 }
 
@@ -144,13 +189,29 @@ BOOL hadCheckLocationService;
     [self.locationManager startUpdatingLocation];
 }
 
--(void)initSiteAnnotation
+-(void)addAnnotation:(Class)theClass
 {
-    for(WSSite* site in self.dateSource){
-        BasicMapAnnotation* annotation = [[BasicMapAnnotation alloc] initWithLatitude:site.lat andLongitude:site.lng];
-        annotation.site = site;
-        [self.mapView addAnnotation:annotation];
+    [self.mapView opremoveAnnotation:[LocalCalloutAnnotation class]];
+    [self.mapView opremoveAnnotation:[BasicMapAnnotation class]];
+    [self.mapView opremoveAnnotation:[CityMapAnnotation class]];
+    
+    
+    if([NSStringFromClass(theClass) isEqualToString: NSStringFromClass([LocalCalloutAnnotation class])]){
+        
+    }else if([NSStringFromClass(theClass) isEqualToString: NSStringFromClass([BasicMapAnnotation class])]){
+        for(WSSite* site in self.siteArray){
+            BasicMapAnnotation* annotation = [[BasicMapAnnotation alloc] initWithLatitude:site.lat andLongitude:site.lng];
+            annotation.site = site;
+            [self.mapView addAnnotation:annotation];
+        }
+    }else if([NSStringFromClass(theClass) isEqualToString: NSStringFromClass([CityMapAnnotation class])]){
+        for(WSCity* city in self.cityArray){
+            CityMapAnnotation* annotation = [[CityMapAnnotation alloc] initWithLatitude:city.center_lat andLongitude:city.center_lon];
+            annotation.city = city;
+            [self.mapView addAnnotation:annotation];
+        }
     }
+    
 }
 
 
@@ -161,37 +222,7 @@ BOOL hadCheckLocationService;
     // Dispose of any resources that can be recreated.
 }
 
--(void)checkLocationService
-{
-    if(hadCheckLocationService)
-        return;
-    
-    hadCheckLocationService = YES;
-    
-    UIAlertView* alView;
-    CLAuthorizationStatus authStatus = [CLLocationManager authorizationStatus];
-    switch (authStatus) {
-        case kCLAuthorizationStatusAuthorized:
-            break;
-            
-        case kCLAuthorizationStatusRestricted:
-            break;
-            
-        case kCLAuthorizationStatusNotDetermined:
-        case kCLAuthorizationStatusDenied:
-            alView = [[UIAlertView alloc] initWithTitle:nil
-                                                message:@"请去设置->隐私->定位服务->福彩信息系统打开定位服务"
-                                               delegate:self
-                                      cancelButtonTitle:@"确定"
-                                      otherButtonTitles:nil, nil];
-            
-            [alView show];
-            break;
-            
-        default:
-            break;
-    }
-}
+
 
 -(BOOL)isArrived:(CLLocation*)location
 {
@@ -204,47 +235,6 @@ BOOL hadCheckLocationService;
     return NO;
 }
 
-//状态“1”增，“2”：变，“3”退，“4”移，“5”售，“6”停，“7”退灰色
--(UIImage*)siteImage:(WSSite*)site
-{
-    UIImage *image = [UIImage imageNamed:@"dotsz_sale"];
-    long siteStatus = site.sitestatus;
-    
-    switch (siteStatus) {
-        case 1:
-            image = [UIImage imageNamed:@"dotsz_proc_add"];
-            break;
-            
-        case 2:
-            image = [UIImage imageNamed:@"dotsz_proc_change"];
-            break;
-            
-        case 3:
-            image = [UIImage imageNamed:@"dotsz_proc_del"];
-            break;
-            
-        case 4:
-            image = [UIImage imageNamed:@"dotsz_move"];
-            break;
-            
-        case 5:
-            image = [UIImage imageNamed:@"dotsz_sale"];
-            break;
-            
-        case 6:
-            image = [UIImage imageNamed:@"dotsz_stop"];
-            break;
-            
-        case 7:
-            image = [UIImage imageNamed:@"dotsz_del_gray"];
-            break;
-            
-        default:
-            break;
-    }
-    
-    return image;
-}
 
 
 -(CLLocationDistance)distance:(BOOL)isLangititude
@@ -388,6 +378,16 @@ BOOL hadCheckLocationService;
         view.parentAnnotationView = self.selectedAnnotationView;
         view.mapView = self.mapView;
         view.delegate = self;
+        return view;
+    }
+    else if([annotation isKindOfClass:[CityMapAnnotation class]]){
+        CityCalloutMapAnnotationView* view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
+        view.parentAnnotationView = self.selectedAnnotationView;
+        view.mapView = self.mapView;
+        view.delegate = self;
+        
+        CityMapAnnotation* ano = (CityMapAnnotation*)annotation;
+        view.cityInfo = ano.city;
         return view;
     }
     else if ([annotation isKindOfClass:[CalloutMapAnnotation class]] ) {

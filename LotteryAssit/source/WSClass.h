@@ -57,3 +57,24 @@
 
 @end
 
+
+//{status：0，level:'2',list：[id:"1212",name:"杭州西湖区",betting_num：20，center_lon：2324324，center_lat：42342343，org_code：‘3310']}
+@interface WSCitys : WSClass
+@property long level; //1,省级用户， 2，市级用户
+@property (nonatomic,strong) NSMutableArray* cityArray;
+
+@end
+
+@interface WSCity  : WSClass
+
+@property (nonatomic) int cityID;
+@property (nonatomic) double center_lat;
+@property (nonatomic) double center_lon;
+@property (nonatomic, retain) NSString* name; //
+@property (nonatomic, retain) NSString* betting_num;
+@property (nonatomic, retain) NSString* org_code;       //
+@property (nonatomic, retain) NSString* org_name;        //
+
+
+@end
+

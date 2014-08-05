@@ -215,5 +215,57 @@
 
 
 
+@implementation WSCitys
 
+-(id)initFromObj:(id)obj
+{
+    self = [super init];
+    if(self)
+    {
+        self.cityArray = [NSMutableArray array];
+        
+        NSDictionary* dict = (NSDictionary*)obj;
+        self.level = [[dict objectForKey:@"level"] longValue];
+        NSArray* array = [dict objectForKey:@"list"];
+        for(NSDictionary* ele in array){
+            WSCity* city = [[WSCity alloc]initFromObj:ele];
+                        
+            [self.cityArray addObject:city];
+            
+        }
+    }
+    
+    return self;
+}
+
+@end
+
+
+@implementation WSCity
+
+-(id)initFromObj:(id)obj
+{
+    self = [super init];
+    if(self)
+    {
+        NSDictionary* dic = (NSDictionary*)obj;
+        
+//        if ([dic valueForKey:@"id"] && ![[dic valueForKey:@"id"] isEqualToString:@"null"]) {
+//            self.cityID = [dic valueForKey:@"id"];
+//        }
+        self.cityID = [[dic valueForKey:@"id"] intValue];
+        self.center_lat = [[dic valueForKey:@"center_lat"]doubleValue];
+        self.center_lon = [[dic valueForKey:@"center_lon"]doubleValue]; //tbd.
+        self.name = [NSString stringWithFormat:@"%d",[[dic valueForKey:@"name"] intValue]];
+        self.betting_num = [dic valueForKey:@"betting_num"];
+        self.org_code = [dic valueForKey:@"org_code"];
+        self.org_name = [dic valueForKey:@"org_name"];
+
+    }
+    
+    return self;
+}
+
+
+@end
 

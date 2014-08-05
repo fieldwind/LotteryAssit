@@ -22,6 +22,12 @@
 @end
 
 
+@interface CityMapAnnotation : GSMapAnnotation
+
+@property (nonatomic, retain) WSCity* city;
+
+@end
+
 
 @interface BasicMapAnnotation : GSMapAnnotation
 

@@ -18,6 +18,11 @@
 @end
 
 
+@implementation CityMapAnnotation
+
+
+@end
+
 
 @implementation BasicMapAnnotation
 
@@ -28,3 +33,4 @@
 @implementation CalloutMapAnnotation
 
 @end
+
