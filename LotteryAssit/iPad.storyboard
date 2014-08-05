@@ -8,6 +8,7 @@
         <scene sceneID="4lo-z3-oy4">
             <objects>
                 <navigationController definesPresentationContext="YES" id="1O9-zV-frf" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WH2-Kg-ktr">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -28,11 +29,13 @@
                         <viewControllerLayoutGuide type="bottom" id="YEZ-lS-dQO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wT7-gH-oxd" customClass="UIWebView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="Zkh-Zu-jwW"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="webView" destination="wT7-gH-oxd" id="XxA-oA-akb"/>
                         <segue destination="ylu-wv-c5e" kind="push" identifier="web2Map" id="PHr-fG-ivi"/>
@@ -51,9 +54,10 @@
                         <viewControllerLayoutGuide type="bottom" id="V7f-1O-BMt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kWG-cp-qN2" customClass="MKMapView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="站点浏览" id="htk-3Z-7F4">
                         <barButtonItem key="leftBarButtonItem" image="UIButtonBarPlayLandscape2.png" id="B3Y-Mo-WuQ">

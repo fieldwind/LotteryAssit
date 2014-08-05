@@ -14,16 +14,19 @@
 
 //preject related
 #if 0
-#define Server_URL_Login @"http://122.224.80.134/login.htm"
-#define Server_URL_AfterLogin @"http://122.224.80.134/index.html"
-#define Server_BroswerSitesURL @"oa_ipad!jumbweb"
 #define Server_BaseURL @"http://122.224.80.134/oa_ipad!"
+#define Server_BroswerSitesURL @"oa_ipad!jumbweb"
 #else
-#define Server_URL_Login @"http://10.80.9.195:8080/welfare_lottery/login.htm"
-#define Server_URL_AfterLogin @"http://10.80.9.195:8080/welfare_lottery/index.html"
-#define Server_BroswerSitesURL @"oa_ipad!s_user!login.action"
-#define Server_BaseURL @"http://10.80.9.195:8080/welfare_lottery/"
+//#define Server_BroswerSitesURL @"oa_ipad!s_user!login.action"
+//#define Server_BaseURL @"http://10.80.9.195:8080/welfare_lottery/"
+#define Server_BaseURL @"http://10.80.9.195:8080/welfare_lottery/oa/shenji/ipad/"
+#define Server_BroswerSitesURL @"oa_ipad!jumbweb.action?"
+
 #endif
+
+#define Server_URL_Login [NSString stringWithFormat:@"%@login.html",Server_BaseURL]
+#define Server_URL_AfterLogin [NSString stringWithFormat:@"%@index.html",Server_BaseURL]
+
 //oa_ipad!
 //gettoken.action  getloginuser.action  getsites.action  getsite.action writeimage.action
 

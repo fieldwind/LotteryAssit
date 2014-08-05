@@ -39,6 +39,20 @@
     self.navigationController.navigationBarHidden = YES;
     self.urlString = Server_URL_Login;
 
+    _indView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+     //12.0;
+    CGFloat width = 20, height = 20;
+//    CGFloat _offsetX = self.view.frame.size.width/2 - width/2;
+//    CGFloat _offsetY = self.view.frame.size.height/2 - height/2;
+    CGFloat _offsetX = self.view.frame.size.height/2 - width/2;
+    CGFloat _offsetY = self.view.frame.size.width/2 - height/2;
+
+//    CGRect rect = CGRectMake(_offsetX, _offsetY, self.view.frame.size.width-_offsetX*2, self.view.frame.size.height-_offsetY*2);
+    CGRect rect = CGRectMake(_offsetX, _offsetY, width, height);
+    
+    _indView.frame = rect;
+    [self.view addSubview:_indView];
+    [_indView setHidden:YES];
     
     //[self configureWebView];
     [self loadAddressURL];
@@ -62,6 +76,15 @@
     }
 }
 
+//-(NSUInteger)supportedInterfaceOrientations{
+//    return UIInterfaceOrientationMaskLandscape;
+//}
+//
+//-(BOOL)shouldAutorotate
+//{
+//    return YES;
+//}
+
 - (void)loadAddressURL {
     NSURL *requestURL = [NSURL URLWithString:self.urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:requestURL];
@@ -77,7 +100,7 @@
 //    //self.navigationController.navigationBar.backItem.leftBarButtonItem.title = @"后退";
     
     //dbg code
-#if 1
+#if 0
     WSSite* st = [[WSSite alloc]init];
     st.siteID = @"4028810e42784a570142786cdff50084";
     NSArray* testarr = [NSArray arrayWithObjects:st, nil];
@@ -85,8 +108,7 @@
     return;
 #endif
     
-    _indView = [[UIActivityIndicatorView alloc]init];
-    [self.webView addSubview:_indView];
+    [_indView setHidden:NO];
     [_indView startAnimating];
 }
 
@@ -118,6 +140,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     [_indView stopAnimating];
+    [_indView setHidden:YES];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -150,7 +173,7 @@
     
 
     
-#if 0
+#if 1
     NSString* prefix = [NSString stringWithFormat:@"%@%@",Server_BaseURL,Server_BroswerSitesURL];
     if(!_isGotoNextPage
        && ([request.URL.absoluteString hasPrefix:prefix]
@@ -171,11 +194,11 @@
                 if(!error && array){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         NSString* code = @"杭州";
-                        NSRange range = [request.URL.absoluteString rangeOfString:@"code="];
+                        NSRange range = [request.URL.absoluteString rangeOfString:@"org_name="];
                         if(NSNotFound != range.location){
                             NSString* fullcodeString = [request.URL.absoluteString substringFromIndex:range.location];
                             if(fullcodeString){
-                                code = [fullcodeString substringFromIndex:[@"code=" length]];
+                                code = [fullcodeString substringFromIndex:[@"org_name=" length]];
                             }
                         }
                         
