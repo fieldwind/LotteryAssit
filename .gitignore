@@ -8,9 +8,3 @@
 LotteryAssit.xcodeproj/project.xcworkspace/xcuserdata/lhd.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.xcscheme
-
-LotteryAssit/viewControllers/GSWebViewController.m
-
-LotteryAssit/viewControllers/mapVC/GIMapViewController.m
-
-LotteryAssit.xcodeproj/xcuserdata/fieldwind.xcuserdatad/xcschemes/xcschememanagement.plist
