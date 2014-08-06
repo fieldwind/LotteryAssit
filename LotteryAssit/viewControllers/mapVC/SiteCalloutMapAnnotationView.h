@@ -15,7 +15,6 @@
 
 @property (atomic,retain) WSSite* siteInfo;
 
--(void)uiInit;
 
 
 @end

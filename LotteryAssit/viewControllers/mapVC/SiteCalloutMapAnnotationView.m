@@ -68,6 +68,7 @@
 	if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
         UITapGestureRecognizer* tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes:)];
         [self addGestureRecognizer:tapGes];
+        //self.notFitMap = YES;
 	}
 	return self;
 }

@@ -156,9 +156,16 @@
             if ([dic valueForKey:@"id"] && ![[dic valueForKey:@"id"] isEqualToString:@"null"]) {
                 site.siteID = [dic valueForKey:@"id"];
             }
-            site.lat = [[dic valueForKey:@"lat"]doubleValue];
-            site.lng = [[dic valueForKey:@"lng"]doubleValue];
+//            site.lat = [[dic valueForKey:@"lat"]doubleValue];
+//            site.lng = [[dic valueForKey:@"lng"]doubleValue];
+            site.lat = [[dic valueForKey:@"pos_y"]doubleValue];
+            site.lng = [[dic valueForKey:@"pos_x"]doubleValue];
             site.sitestatus = [[dic valueForKey:@"sitestatus"]intValue];
+            
+            
+            if([site.siteID isEqualToString:@"2c90818142f9a6ba0142fa476d940061"]){
+                NSLog(@"2c90818142f9a6ba0142fa476d940061: lat:%f", site.lat);
+            }
             
             [self.siteArray addObject:site];
 
@@ -255,9 +262,9 @@
 //        }
         self.cityID = [[dic valueForKey:@"id"] intValue];
         self.center_lat = [[dic valueForKey:@"center_lat"]doubleValue];
-        self.center_lon = [[dic valueForKey:@"center_lon"]doubleValue]; //tbd.
-        self.name = [NSString stringWithFormat:@"%d",[[dic valueForKey:@"name"] intValue]];
-        self.betting_num = [dic valueForKey:@"betting_num"];
+        self.center_lon = [[dic valueForKey:@"center_lon"]doubleValue];
+        self.name = [dic valueForKey:@"name"] ;
+        self.betting_num = [NSString stringWithFormat:@"%d",[[dic valueForKey:@"betting_num"] intValue]];
         self.org_code = [dic valueForKey:@"org_code"];
         self.org_name = [dic valueForKey:@"org_name"];
 

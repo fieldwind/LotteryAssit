@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E71424CD1977A2F7004232EA /* GIEleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71424CC1977A2F7004232EA /* GIEleViewController.m */; };
 		E71C1A9F1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */; };
-		E729D2F41991BF5A00ED0E2D /* CityFatherMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E729D2F31991BF5A00ED0E2D /* CityFatherMapAnnotationView.m */; };
 		E793BA4D197C9C990083B999 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E793BA29197C9C990083B999 /* AFHTTPRequestOperation.m */; };
 		E793BA4E197C9C990083B999 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E793BA2B197C9C990083B999 /* AFHTTPRequestOperationManager.m */; };
 		E793BA4F197C9C990083B999 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E793BA2D197C9C990083B999 /* AFHTTPSessionManager.m */; };
@@ -89,8 +88,6 @@
 		E71424CC1977A2F7004232EA /* GIEleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIEleViewController.m; sourceTree = "<group>"; };
 		E71C1A9D1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCalloutMapAnnotationView.h; sourceTree = "<group>"; };
 		E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCalloutMapAnnotationView.m; sourceTree = "<group>"; };
-		E729D2F21991BF5A00ED0E2D /* CityFatherMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityFatherMapAnnotationView.h; sourceTree = "<group>"; };
-		E729D2F31991BF5A00ED0E2D /* CityFatherMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityFatherMapAnnotationView.m; sourceTree = "<group>"; };
 		E793BA28197C9C990083B999 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E793BA29197C9C990083B999 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E793BA2A197C9C990083B999 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -305,8 +302,6 @@
 				E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */,
 				E7D0DE1A1990C2F200B0DD23 /* CityCalloutMapAnnotationView.h */,
 				E7D0DE1B1990C2F200B0DD23 /* CityCalloutMapAnnotationView.m */,
-				E729D2F21991BF5A00ED0E2D /* CityFatherMapAnnotationView.h */,
-				E729D2F31991BF5A00ED0E2D /* CityFatherMapAnnotationView.m */,
 			);
 			path = mapVC;
 			sourceTree = "<group>";
@@ -623,7 +618,6 @@
 				E7A7BC4A197F4F4C00A096AA /* MKMapView+Operation.m in Sources */,
 				E7D0DE191990BB1100B0DD23 /* GIMapViewController+Help.m in Sources */,
 				E7CC31F8197369FB002A0A4C /* GSTableViewController.m in Sources */,
-				E729D2F41991BF5A00ED0E2D /* CityFatherMapAnnotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

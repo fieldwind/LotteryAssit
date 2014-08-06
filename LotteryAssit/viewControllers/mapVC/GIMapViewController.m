@@ -41,6 +41,7 @@ typedef enum {
     
 }
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftBarItem;
 @property (nonatomic, retain) CalloutMapAnnotation *calloutAnnotation;
 @property (nonatomic, retain) LocalCalloutAnnotation *localcalloutAnnotation;
 
@@ -48,6 +49,12 @@ typedef enum {
 //@property (nonatomic, retain) BasicMapAnnotation *customAnnotation;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLGeocoder* geocoder;
+
+@property (nonatomic, strong) WSCity* city;
+@property (nonatomic, strong) WSCity* town;
+@property (nonatomic, strong) UIButton* cityBtn;
+@property (nonatomic, strong) UIButton* townBtn;
 
 @end
 
@@ -61,6 +68,8 @@ typedef enum {
     }
     return self;
 }
+
+CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
 
 
 - (void)viewDidLoad
@@ -79,17 +88,118 @@ typedef enum {
     [self checkLocationService];
     
     self.mapView.delegate = self;
+    self.geocoder = [[CLGeocoder alloc] init];
+    [self customeNavBar];
     
-    //[self loacteCity:nil];
+    //set defualt map region.
+    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinateHz,province_span,province_span) animated:YES]; //MKCoordinateRegionMake
+
     
-    [self initLoadCoordinate];
+    [self loacteCity:nil];
     
+
+    //[self initLoadCoordinate];
+    
+}
+
+-(void)customeNavBar
+{
+    
+    CGFloat offsetX = 0;
+    CGFloat offsetY = 0;
+    CGFloat labelWidth = 55;
+    
+    UIView* leftView = [[UIView alloc]initWithFrame:CGRectMake(0, offsetY, 924, 44)];
+    
+    
+    NSArray *segArray = @[@"浙江省",@"",@"",@"站点浏览"];
+    long i = 0;
+    for(NSString* str in segArray){
+        CGFloat offX = offsetX+labelWidth*i;
+        CGFloat fontSize = 16.0;
+        if(i == 2){
+            labelWidth = 120;
+        }
+        if(i == 3){
+            offX = 420;
+            fontSize =  20.0;
+        }
+        UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(offX, 10, labelWidth, 20)];
+        [button setTitle:str forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+        button.titleLabel.textAlignment = NSTextAlignmentLeft;
+        [button addTarget:self action:@selector(tapGes:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = i;
+        
+        if(i == 1){
+            self.cityBtn = button;
+        }else if(i == 2){
+            self.townBtn = button;
+        }
+        
+        [leftView addSubview:button];
+
+        i++;
+    }
+    
+    
+    self.navigationItem.titleView = leftView;
     
 }
 
 
+
+-(void)tapGes:(id)sender
+{
+    UIButton* view = (UIButton*) sender;
+    //CGPoint pt = [tapGest locationInView:view];
+    //NSLog(@"tapGEs:%@",[sender class]);
+    
+    switch (view.tag) {
+        case 0:
+            [self loacteCity:nil];
+            [self.cityBtn setTitle:@"" forState:UIControlStateNormal];
+            [self.townBtn setTitle:@"" forState:UIControlStateNormal];
+
+            break;
+            
+        case 1:
+            [self loacteCity:self.city];
+            [self.townBtn setTitle:@"" forState:UIControlStateNormal];
+            break;
+            
+        case 2:
+            [self trigerGotoCity:self.town];
+            break;
+            
+        default:
+            break;
+    }
+    
+//    if(CGRectContainsPoint(self.distButton.frame, pt)){
+//        //NSLog(@"---tapGEs:%@",[sender class]);
+//        if([self.delegate respondsToSelector:@selector(triggerDistanceBtn: annotation:)]){
+//            [self.delegate triggerDistanceBtn:[self.distanceTxt.text doubleValue] annotation:self.annotation];
+//        }
+//    }
+    
+    
+}
+
 -(void)initLoadCoordinate
 {
+    
+    WSSite* site = [[WSSite alloc]init];
+    site.lat = currPos.latitude;
+    site.lng = currPos.longitude;
+    BasicMapAnnotation* annotation = [[BasicMapAnnotation alloc] initWithLatitude:site.lat andLongitude:site.lng];
+    annotation.site = site;
+    //annotation.site = site;
+    [self.mapView addAnnotation:annotation];
+    
+    return;
+    
     //init coordinate
     //CLLocationCoordinate2D coordinate = {30.25,120.2};
     spanX = 5000*100; //12500;
@@ -117,10 +227,9 @@ typedef enum {
 //    coordinate.longitude = site.lng;
     
     
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     
     NSString* orgName = @"浙江省杭州市";
-    [geocoder geocodeAddressString:orgName completionHandler:^(NSArray *placemarks, NSError *error) {
+    [self.geocoder geocodeAddressString:orgName completionHandler:^(NSArray *placemarks, NSError *error) {
         if(error){
             NSLog(@"%@",error);
         }else{
@@ -136,8 +245,8 @@ typedef enum {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(place.location.coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
                 dispatch_after(2.0, dispatch_get_main_queue(), ^{
-//                    CityMapAnnotation* annotation = [[CityMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
-                    LocalMapAnnotation* annotation = [[LocalMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
+                    CityMapAnnotation* annotation = [[CityMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
+                   // LocalMapAnnotation* annotation = [[LocalMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
 
                     [self.mapView addAnnotation:annotation];
                 });
@@ -166,55 +275,69 @@ typedef enum {
 
 
 
--(void)loacteCity:(NSString*)orgCode
+-(void)loacteCity:(WSCity*)city
 {
     [[UserDataManager sharedManager]accessCitys:^(WSCitys *citys, NSError *error) {
-        NSString* orgName;
-        if(!orgCode){
+        NSString* orgName = city.org_name;;
+        if(!city){
             if(citys.level == 1){
-                orgName = @"浙江省金华市";
+                orgName = @"浙江省杭州市";
                 showMapLevel = 0;
             }else if([citys.cityArray count]){
-                WSCity* city = [citys.cityArray objectAtIndex:0];
-                orgName = city.org_name;
+                WSCity* acity = [citys.cityArray objectAtIndex:0];
+                orgName = acity.org_name;
                 showMapLevel = 1;
             }
-        }else if([citys.cityArray count]){
-            WSCity* city = [citys.cityArray objectAtIndex:0];
-            orgName = city.name;
+        }else{
             showMapLevel = 1;
         }
-        if(showMapLevel == 0){
-            self.cityArray = citys.cityArray;
-        }else{
-            self.townArray = citys.cityArray;
+//        if(showMapLevel == 0){
+//        }else{
+//            self.city = citys.cityArray;
+//        }
+        
+        self.cityArray = citys.cityArray;
+
+        
+        
+        if(!orgName || [orgName isEqualToString:@""]){
+            orgName = city.name;
         }
         
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        
-        
-        [geocoder geocodeAddressString:orgName completionHandler:^(NSArray *placemarks, NSError *error) {
-            if(error){
-                NSLog(@"%@",error);
-            }else{
-                CLPlacemark* place = [placemarks lastObject];
-                for(CLPlacemark* place in placemarks){
-                    //NSLog(@"name:%@",place.name);
-                    NSLog(@"%@",place);
-                }
-                
-                spanX = [self spanWithMapLevel:showMapLevel];
-                spanY = spanX;
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(place.location.coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
-                    [self addAnnotation:[CityMapAnnotation class]];
-                });
-            }
+        spanX = [self spanWithMapLevel:showMapLevel];
+        spanY = spanX;
+        CLLocationCoordinate2D coordinate = coordinateHz;
+
+        if(showMapLevel == 0)
+        {
+//            [self.geocoder geocodeAddressString:orgName completionHandler:^(NSArray *placemarks, NSError *error) {
+//                if(error){
+//                    NSLog(@"%@",error);
+//                }else{
+//                    CLPlacemark* place = [placemarks lastObject];
+//                    for(CLPlacemark* place in placemarks){
+//                        //NSLog(@"name:%@",place.name);
+//                        NSLog(@"%@",place);
+//                    }
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(place.location.coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
+//                        [self addAnnotation:[CityMapAnnotation class]];
+//                    });
+//                }
+//                
+//            }];
             
-        }];
+            [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate,spanX,spanY) animated:YES];
+            [self addAnnotation:[CityMapAnnotation class]];
+        }else{
+            coordinate.latitude = city.center_lat;
+            coordinate.longitude = city.center_lon;
+            [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate,spanX,spanY) animated:YES];
+            [self addAnnotation:[CityMapAnnotation class]];
+        }
         
-    } orgCode:orgCode];
+    } orgCode:city.org_code];
     
    
     
@@ -242,9 +365,26 @@ typedef enum {
         
     }else if([NSStringFromClass(theClass) isEqualToString: NSStringFromClass([BasicMapAnnotation class])]){
         for(WSSite* site in self.siteArray){
+//            site.lat = currPos.latitude;
+//            site.lng = currPos.longitude;
+            
             BasicMapAnnotation* annotation = [[BasicMapAnnotation alloc] initWithLatitude:site.lat andLongitude:site.lng];
+            //dbg code.
+#if 0
+            if([site.siteID isEqualToString:@"2c90818142f9a6ba0142fa476d940061"]){
+                site.lat = currPos.latitude;
+                site.lng = currPos.longitude;
+                annotation.site = site;
+                [self.mapView addAnnotation:annotation];
+                break;
+            }
+            else{
+                continue;
+            }
+#endif
             annotation.site = site;
             [self.mapView addAnnotation:annotation];
+           // break;
         }
     }else if([NSStringFromClass(theClass) isEqualToString: NSStringFromClass([CityMapAnnotation class])]){
         for(WSCity* city in self.cityArray){
@@ -404,6 +544,8 @@ typedef enum {
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    BOOL isReused = YES;
+
 	
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -423,6 +565,12 @@ typedef enum {
         return view;
     }
     else if([annotation isKindOfClass:[CityMapAnnotation class]]){
+//        CityCalloutMapAnnotationView* view = (CityCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CityCalloutMapAnnotationView"];
+//        if(!view)
+//        {
+//            isReused = NO;
+//            view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
+//        }
         CityCalloutMapAnnotationView* view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
         view.parentAnnotationView = self.selectedAnnotationView;
         view.mapView = self.mapView;
@@ -430,10 +578,11 @@ typedef enum {
         
         CityMapAnnotation* ano = (CityMapAnnotation*)annotation;
         view.cityInfo = ano.city;
+        //if(!isReused)
+            [view uiInit];
         return view;
     }
     else if ([annotation isKindOfClass:[CalloutMapAnnotation class]] ) {
-        BOOL isReused = YES;
         SiteCalloutMapAnnotationView *calloutMapAnnotationView = (SiteCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CalloutAnnotation"];
 		if (!calloutMapAnnotationView) {
             isReused = NO;
@@ -450,7 +599,10 @@ typedef enum {
 		return calloutMapAnnotationView;
 	}
     else if ([annotation isKindOfClass:[BasicMapAnnotation class]]) {
-		MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomAnnotation"] ;
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"BasicMapAnnotation"];
+        if(!annotationView){
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"BasicMapAnnotation"] ;
+        }
 		annotationView.canShowCallout = NO;
 		annotationView.pinColor = MKPinAnnotationColorGreen;
         
@@ -486,7 +638,48 @@ typedef enum {
 	return nil;
 }
 
-#pragma mark - SiteAnoViewDelegate
+#pragma mark - AnoViewDelegate
+-(void)trigerGotoCity:(id)cityInfo
+{
+    WSCity* city = (WSCity*)cityInfo;
+    
+    if(showMapLevel == 0){
+        self.city = city;
+        [self.cityBtn setTitle:city.name forState:UIControlStateNormal];
+        [self.townBtn setTitle:@"" forState:UIControlStateNormal];
+
+
+        [self loacteCity:city];
+    }else {
+        self.town = city;
+        [self.townBtn setTitle:city.name forState:UIControlStateNormal];
+
+
+        //locate city
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = city.center_lat;
+        coordinate.longitude = city.center_lon;
+        spanX = [self spanWithMapLevel:2];
+        spanY = spanX;
+        [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
+
+        
+        //show siteInfo.
+        [[UserDataManager sharedManager]accessSites:^(NSArray *array, NSError *error) {
+            if(!error && array){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.siteArray = array;
+                    [self addAnnotation:[BasicMapAnnotation class]];
+                });
+            }
+        } userID:[UserDataManager sharedManager].currUser orgCode:nil];
+
+
+    }
+    
+    //refresh titleview.
+}
+
 -(void)trigerGotoSite:(id)siteInfo
 {
     [self resetRouteStatus];

@@ -7,10 +7,9 @@
 //
 
 #import "CalloutMapAnnotationView.h"
-#import "CityFatherMapAnnotationView.h"
 #import "WSClass.h"
 
-@interface CityCalloutMapAnnotationView : CityFatherMapView
+@interface CityCalloutMapAnnotationView : CalloutMapAnnotationView
 
 @property (atomic,retain) WSCity* cityInfo;
 

@@ -81,11 +81,11 @@
 }
 
 
--(void)accessSites:(void (^)(NSArray * , NSError* ))response userID:(NSString *)userID
+-(void)accessSites:(void (^)(NSArray * , NSError* ))response userID:(NSString *)userID orgCode:(NSString*)orgCode
 {
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     NSString* url = [NSString stringWithFormat:@"%@oa_ipad!getsites.action",Server_BaseURL];
-    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:userID,@"useid", nil];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:userID,@"useid", orgCode,@"org_code", nil];
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         WSSites* sites = [[WSSites alloc]initFromObj:responseObject];
         response(sites.siteArray,nil);
@@ -156,7 +156,7 @@
     if(orgCode){
         //http://10.80.9.195:8080/welfare_lottery/oa_ipad!getqv.action
         url = [NSString stringWithFormat:@"%@oa_ipad!getqv.action",Server_BaseURL];
-        [NSDictionary dictionaryWithObjectsAndKeys:
+        dict = [NSDictionary dictionaryWithObjectsAndKeys:
          orgCode,@"org_code",
          nil];
     }

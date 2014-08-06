@@ -9,9 +9,7 @@
 #import "GIMapViewController+Help.h"
 
 
-#define province_span (500*1000)
-#define city_span (5*1000)
-#define town_span (1500)
+
 
 @implementation GIMapViewController (Help)
 

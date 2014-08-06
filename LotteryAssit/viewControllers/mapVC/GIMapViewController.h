@@ -11,6 +11,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "SiteCalloutMapAnnotationView.h"
 
+#define province_span (500*1000)
+#define city_span (50*1000)
+#define town_span (7*1000)
 
 @interface GIMapViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate,SiteAnoViewDelegate>
 

@@ -100,7 +100,7 @@
 //    //self.navigationController.navigationBar.backItem.leftBarButtonItem.title = @"后退";
     
     //dbg code
-#if 1
+#if 0
     WSSite* st = [[WSSite alloc]init];
     st.siteID = @"4028810e42784a570142786cdff50084";
     NSArray* testarr = [NSArray arrayWithObjects:st, nil];
@@ -188,22 +188,22 @@
 #endif
     {
         _isGotoNextPage = YES;
-        [self performSegueWithIdentifier:@"web2Map" sender:nil];
+        //[self performSegueWithIdentifier:@"web2Map" sender:nil];
 
 
-#if 0
+#if 1
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [[UserDataManager sharedManager]accessSites:^(NSArray *array, NSError *error) {
                 if(!error && array){
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        NSString* code = @"杭州";
-                        NSRange range = [request.URL.absoluteString rangeOfString:@"org_name="];
-                        if(NSNotFound != range.location){
-                            NSString* fullcodeString = [request.URL.absoluteString substringFromIndex:range.location];
-                            if(fullcodeString){
-                                code = [fullcodeString substringFromIndex:[@"org_name=" length]];
-                            }
-                        }
+//                        NSString* code = @"杭州";
+//                        NSRange range = [request.URL.absoluteString rangeOfString:@"org_name="];
+//                        if(NSNotFound != range.location){
+//                            NSString* fullcodeString = [request.URL.absoluteString substringFromIndex:range.location];
+//                            if(fullcodeString){
+//                                code = [fullcodeString substringFromIndex:[@"org_name=" length]];
+//                            }
+//                        }
                         
                         
                         
@@ -214,11 +214,11 @@
                         
                         
                         
-                        [self performSegueWithIdentifier:@"web2Map" sender:[NSArray arrayWithObjects:array, code,nil]];
+                        [self performSegueWithIdentifier:@"web2Map" sender:[NSArray arrayWithObjects:array,nil]];
 
                     });
                 }
-            } userID:[UserDataManager sharedManager].currUser];
+            } userID:[UserDataManager sharedManager].currUser orgCode:nil];
             
         });
         
@@ -261,8 +261,8 @@
     if([segue.identifier isEqualToString:@"web2Map"]){
         self.navigationController.navigationBarHidden = NO;
         GIMapViewController* mapVC = [segue destinationViewController];
-//        NSArray* params = (NSArray*)sender;
-//        mapVC.dateSource = [params objectAtIndex:0];
+        NSArray* params = (NSArray*)sender;
+        mapVC.siteArray = [params objectAtIndex:0];
 //        mapVC.orgName = [params objectAtIndex:1];
     }
 }

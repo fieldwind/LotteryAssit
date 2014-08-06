@@ -2,9 +2,14 @@
 #import <MapKit/MapKit.h>
 #import "GSProjectHeader.h"
 
+#define CalloutMapAnnotationViewBottomShadowBufferSize 6.0f
+#define CalloutMapAnnotationViewContentHeightBuffer 8.0f
+#define CalloutMapAnnotationViewHeightAboveParent 2.0f
+
 @protocol SiteAnoViewDelegate <NSObject>
 
 @optional
+-(void)trigerGotoCity:(id)cityInfo;
 -(void)trigerGotoSite:(id)siteInfo;
 -(void)triggerDistanceBtn:(double)distance annotation:(id)annotation;
 @end
@@ -27,7 +32,8 @@
 @property (nonatomic) CGFloat contentHeight;
 @property (nonatomic) CGFloat contentWidth;
 @property (assign) id delegate;
-
+@property (nonatomic) BOOL notFitMap;
+@property (nonatomic, readonly) CGFloat yShadowOffset;
 
 
 - (void)animateIn;
@@ -36,5 +42,9 @@
 
 - (void) preventParentSelectionChange;
 - (void) allowParentSelectionChange ;
+
+-(void)drawArc;
+-(void)uiInit;
+
 
 @end

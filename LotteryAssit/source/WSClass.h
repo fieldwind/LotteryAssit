@@ -74,7 +74,7 @@
 @property (nonatomic, retain) NSString* betting_num;
 @property (nonatomic, retain) NSString* org_code;       //
 @property (nonatomic, retain) NSString* org_name;        //
-
+@property (nonatomic) long level;
 
 @end
 

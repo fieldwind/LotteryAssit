@@ -4,15 +4,12 @@
 #import "GSProjectHeader.h"
 #import <objc/runtime.h>
 
-#define CalloutMapAnnotationViewBottomShadowBufferSize 6.0f
-#define CalloutMapAnnotationViewContentHeightBuffer 8.0f
-#define CalloutMapAnnotationViewHeightAboveParent 2.0f
+
 
 @interface CalloutMapAnnotationView(){
    // UIColor* _bkgColor;
 }
 
-@property (nonatomic, readonly) CGFloat yShadowOffset;
 @property (nonatomic) BOOL animateOnNextDrawRect;
 @property (nonatomic) CGRect endFrame;
 
@@ -136,7 +133,9 @@
 		//CLLocationCoordinate2D newCenterCoordinate = {self.mapView.region.center.latitude + latitudinalShift,self.mapView.region.center.longitude + longitudinalShift};
         CLLocationCoordinate2D newCenterCoordinate = {self.mapView.region.center.latitude + latitudinalShift,self.mapView.region.center.longitude};
 
-		[self.mapView setCenterCoordinate:newCenterCoordinate animated:YES];
+        if(!self.notFitMap){
+            [self.mapView setCenterCoordinate:newCenterCoordinate animated:YES];
+        }
 		
 		//fix for now
 		self.frame = CGRectMake(self.frame.origin.x - xPixelShift,
@@ -200,6 +199,7 @@
 	[self adjustMapRegionIfNeeded];
 	[self animateIn];
 }
+
 
 
 
