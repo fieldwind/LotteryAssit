@@ -73,16 +73,16 @@ typedef enum {
     currPos.longitude = 120.16;
     desPos.latitude = 30.192; //bingJiang
     desPos.longitude = 120.170;
-//    desPos.latitude = 30.192; //嘉兴
-//    desPos.longitude = 120.970;
+    desPos.latitude = 30.192; //嘉兴
+    desPos.longitude = 120.970;
     
     [self checkLocationService];
     
     self.mapView.delegate = self;
     
-    [self loacteCity:nil];
+    //[self loacteCity:nil];
     
-    //[self initLoadCoordinate];
+    [self initLoadCoordinate];
     
     
 }
@@ -92,7 +92,7 @@ typedef enum {
 {
     //init coordinate
     //CLLocationCoordinate2D coordinate = {30.25,120.2};
-    spanX = 3000; //12500;
+    spanX = 5000*100; //12500;
     spanY = spanX; // 2500;
     
     
@@ -101,18 +101,60 @@ typedef enum {
     //NSString* orgName = @"杭州市滨江区创新大厦"; //@"杭州市滨江区彩虹城"; //@"ZIP CODE 310000";
     for(WSSite* site in self.siteArray){
         if([site.siteID isEqualToString:@"4028810e42784a570142786cdff50084"]){
-            CLLocationCoordinate2D coordinate = {desPos.latitude,desPos.longitude};
-            site.lat = coordinate.latitude;
-            site.lng = coordinate.longitude;
             
-            coordinate.latitude = site.lat;
-            coordinate.longitude = site.lng;
-            [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate,spanX,spanY) animated:YES];
         }
     }
     
-    LocalMapAnnotation* annotation = [[LocalMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
-    [self.mapView addAnnotation:annotation];
+//    CityMapAnnotation* annotation = [[CityMapAnnotation alloc] initWithLatitude:city.center_lat andLongitude:city.center_lon];
+//    annotation.city = city;
+//    [self.mapView addAnnotation:annotation];
+    
+    
+//    site.lat = coordinate.latitude;
+//    site.lng = coordinate.longitude;
+//    
+//    coordinate.latitude = site.lat;
+//    coordinate.longitude = site.lng;
+    
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    
+    NSString* orgName = @"浙江省杭州市";
+    [geocoder geocodeAddressString:orgName completionHandler:^(NSArray *placemarks, NSError *error) {
+        if(error){
+            NSLog(@"%@",error);
+        }else{
+            CLPlacemark* place = [placemarks lastObject];
+            for(CLPlacemark* place in placemarks){
+                //NSLog(@"name:%@",place.name);
+                NSLog(@"%@",place);
+            }
+            
+            //spanX = [self spanWithMapLevel:showMapLevel];
+            spanY = spanX;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(place.location.coordinate,spanX,spanY) animated:YES]; //MKCoordinateRegionMake
+                dispatch_after(2.0, dispatch_get_main_queue(), ^{
+//                    CityMapAnnotation* annotation = [[CityMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
+                    LocalMapAnnotation* annotation = [[LocalMapAnnotation alloc] initWithLatitude:currPos.latitude andLongitude:currPos.longitude];
+
+                    [self.mapView addAnnotation:annotation];
+                });
+                
+            });
+        }
+        
+    }];
+    
+    
+    
+//    CLLocationCoordinate2D coordinate = {desPos.latitude,desPos.longitude};
+//    
+//    [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(coordinate,spanX,spanY) animated:YES];
+    
+    
+
     
     return;
 #endif

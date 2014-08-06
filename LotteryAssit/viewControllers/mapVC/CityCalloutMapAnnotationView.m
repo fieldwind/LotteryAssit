@@ -37,7 +37,7 @@
 
 - (id) initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
 	if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
-        self.contentBkgColor = [UIColor orangeColor];
+        self.contentBkgColor = HexColor2UIColor(192, 119, 202, 1); //[UIColor orangeColor];
         UITapGestureRecognizer* tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes:)];
         [self addGestureRecognizer:tapGes];
         [self uiInit];

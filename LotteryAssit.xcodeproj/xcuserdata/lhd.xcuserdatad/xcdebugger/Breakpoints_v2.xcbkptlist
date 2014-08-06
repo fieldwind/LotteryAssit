@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "-initLocationManager"
-            landmarkType = "5">
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "@implementation GIMapViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -521,22 +521,6 @@
             timestampString = "428919041.24045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "-initLoadCoordinate"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
             endingLineNumber = "102"
             landmarkName = "-initLoadCoordinate"
@@ -550,11 +534,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
             landmarkName = "-mapView:didDeselectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -566,11 +550,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -582,11 +566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -598,11 +582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "427778309.05597"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -614,11 +598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "-mapView:didDeselectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -790,11 +774,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -822,11 +806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "427778309.05597"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -838,11 +822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -854,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -870,11 +854,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
             landmarkName = "-mapView:didSelectAnnotationView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -966,13 +950,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "427778309.05597"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
-            landmarkName = "-trigerGotoSite:"
-            landmarkType = "5">
+            startingLineNumber = "489"
+            endingLineNumber = "489"
+            landmarkName = "@implementation GIMapViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -998,12 +982,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "-initLocationManager"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "-loacteCity:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1014,11 +998,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "-distance:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
+            timestampString = "428981926.129986"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "304"
+            endingLineNumber = "304"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1030,11 +1030,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "-distance:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
+            timestampString = "428981926.129986"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1046,43 +1062,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
-            landmarkName = "-locationManager:didUpdateLocations:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
-            landmarkName = "-locationManager:didUpdateLocations:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919041.24045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1142,12 +1126,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "427798638.035471"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "451"
-            endingLineNumber = "451"
-            landmarkName = "-trigerGotoSite:"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
+            landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1270,12 +1254,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428918878.741803"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "-loacteCity:"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "-initLoadCoordinate"
             landmarkType = "5">
             <Locations>
                <Location
@@ -1332,11 +1316,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919179.96339"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-loacteCity:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1412,11 +1396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428919912.517264"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-loacteCity:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1428,12 +1412,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
-            timestampString = "428920592.086258"
+            timestampString = "428981926.129986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-loacteCity:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LotteryAssit/viewControllers/mapVC/GIMapViewController.m"
+            timestampString = "428981617.648314"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-initLoadCoordinate"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
