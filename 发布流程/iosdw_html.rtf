@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset134 STHeitiSC-Light;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red163\green21\blue21;\red0\green128\blue0;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10380\viewh7200\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural
+
+\f0\fs22 \cf0 \CocoaLigature0 <html>\
+<head>\
+\
+<meta \cf2 id\cf0 =\cf3 "urladdress"\cf0  http-equiv=\cf3 "refresh"\cf0  content=\cf3 ""\cf0 >\
+<!-- <meta http-equiv=\cf3 "refresh"\cf0  content=\cf3 "0;URL=itms-services://?action=download-manifest&url=http://mobile.zjhcsoft.com/dwsoft/enterassist/enterassist.plist"\cf0 > -->\
+\
+<script type=\cf3 "text/javascript"\cf0 >\
+var bs=\{\
+isIOS:function()\{\
+    var u = navigator.userAgent;\
+    \cf2 if\cf0 (u.indexOf('iPhone') > -1 || u.indexOf('iPad') > -1)\{\
+        \cf2 return\cf0  \cf2 true\cf0 ;\
+    \}\cf2 else\cf0 \{\
+        \cf2 return\cf0  \cf2 false\cf0 ;\
+    \}\
+\},\
+highVersion:function()\{\
+    var u = navigator.userAgent, app = navigator.appVersion;\
+    app=/OS.*(_\\d[\\s])+?/i.exec(app)[0];\
+    app=app.replace(/[\\s]/g,\cf3 ""\cf0 ).replace(/OS/i,\cf3 ""\cf0 ).replace(/\\_/g,\cf3 "."\cf0 );\
+    app=app.substring(0,app.lastIndexOf(\cf3 "."\cf0 ));\
+    var version=parseFloat(app);\
+    var flag = \cf2 false\cf0 ;\cf4 //
+\f1 \'b7\'da
+\f0 \uc0\u1057 7.0\cf0 \
+    \cf2 if\cf0 (version>=7.0)\{\
+        flag = \cf2 true\cf0 ;\cf4 //
+\f1 \'b7\'da
+\f0 7.0\cf0 \
+    \}\
+    \cf2 return\cf0  flag;\
+\}\
+\}\
+var theurl = '';\
+\cf2 if\cf0 (bs.isIOS()==\cf2 true\cf0 )\{\
+    var highFlag = bs.highVersion();\
+    \cf2 if\cf0 (highFlag==\cf2 true\cf0 )\{\
+        theurl = \cf3 "https://mobile.zjhcsoft.com:8443/plist/enterassist.plist"\cf0 ;\
+    \}\cf2 else\cf0  \cf2 if\cf0 (highFlag==\cf2 false\cf0 )\{\
+        theurl = \cf3 "http://mobile.zjhcsoft.com/dwsoft/enterassist/enterassist.plist"\cf0 ;\
+    \}\
+    document.getElementById('urladdress').content = \cf3 "0;URL=itms-services://?action=download-manifest&url="\cf0  + theurl;\
+\}\
+\pard\tx529\pardeftab529\pardirnatural
+\cf4 //alert(document.getElementById('urladdress').content);\cf0 \
+</script>\
+</head>\
+</html>\
+}
