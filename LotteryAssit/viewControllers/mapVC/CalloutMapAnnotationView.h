@@ -43,7 +43,7 @@
 - (void) preventParentSelectionChange;
 - (void) allowParentSelectionChange ;
 
--(void)drawArc;
+-(void)loadData;
 -(void)uiInit;
 
 

@@ -159,7 +159,7 @@
 {
     NSLog(@"shouldStartLoadWithRequest:%@",request.URL);
     
-    if([request.URL.absoluteString isEqualToString:Server_URL_AfterLogin]){
+    if([request.URL.absoluteString hasSuffix:Server_URL_AfterLogin]){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [[UserDataManager sharedManager]accessCurrUser];
             if(![UserDataManager sharedManager].isSentDeviceToken){
@@ -174,9 +174,11 @@
 
     
 #if 1
-    NSString* prefix = [NSString stringWithFormat:@"%@%@",Server_BaseURL,Server_BroswerSitesURL];
+    //NSString* prefix = [NSString stringWithFormat:@"%@%@",Server_BaseURL,Server_BroswerSitesURL];
+    NSString* suffix = Server_BroswerSitesURL;
+    //suffix = @"testdbg";
     if(!_isGotoNextPage
-       && ([request.URL.absoluteString hasPrefix:prefix]
+       && ([request.URL.absoluteString hasSuffix:suffix]
        ))
 #else
     //below is dbg condition

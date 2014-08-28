@@ -124,10 +124,10 @@
 	
 	//Calculate new center point, if needed
 	if (xPixelShift || yPixelShift) {
-		CGFloat pixelsPerDegreeLongitude = self.mapView.frame.size.width / self.mapView.region.span.longitudeDelta;
+		//CGFloat pixelsPerDegreeLongitude = self.mapView.frame.size.width / self.mapView.region.span.longitudeDelta;
 		CGFloat pixelsPerDegreeLatitude = self.mapView.frame.size.height / self.mapView.region.span.latitudeDelta;
 		
-		CLLocationDegrees longitudinalShift = -(xPixelShift / pixelsPerDegreeLongitude);
+		//CLLocationDegrees longitudinalShift = -(xPixelShift / pixelsPerDegreeLongitude);
 		CLLocationDegrees latitudinalShift = yPixelShift / pixelsPerDegreeLatitude;
 		
 		//CLLocationCoordinate2D newCenterCoordinate = {self.mapView.region.center.latitude + latitudinalShift,self.mapView.region.center.longitude + longitudinalShift};
@@ -250,7 +250,6 @@
 	
 	//Fill Callout Bubble & Add Shadow
 	color = self.contentBkgColor;
-    //color = [[UIColor blackColor] colorWithAlphaComponent:.6];
 	[color setFill];
 	CGContextAddPath(context, path);
 	CGContextSaveGState(context);
@@ -261,7 +260,6 @@
     
 	//Stroke Callout Bubble
 	color = self.contentBkgColor;
-    //color = [[UIColor darkGrayColor] colorWithAlphaComponent:.9];
 	[color setStroke];
 	CGContextSetLineWidth(context, stroke);
 	CGContextSetLineCap(context, kCGLineCapSquare);
@@ -369,7 +367,14 @@
 	self.mapView = nil;
 }
 
-
+-(void)loadData
+{
+    
+}
+-(void)uiInit
+{
+    
+}
 
 #pragma mark - action
 - (void) preventParentSelectionChange {

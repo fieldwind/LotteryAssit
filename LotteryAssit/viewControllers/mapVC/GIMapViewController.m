@@ -551,42 +551,49 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
         return nil;
 
     if([annotation isKindOfClass:[LocalMapAnnotation class]]){
-        MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomAnnotation"] ;
-		annotationView.canShowCallout = NO;
-		annotationView.pinColor = MKPinAnnotationColorGreen;
+        MKPinAnnotationView* view = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomAnnotationView"];
+        if(!view)
+        {
+            view = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CustomAnnotationView"] ;
+        }
+		view.canShowCallout = NO;
+		view.pinColor = MKPinAnnotationColorGreen;
         
-        return annotationView;
+        return view;
     }
     else if([annotation isKindOfClass:[LocalCalloutAnnotation class]]){
-        LocalCalloutMapAnnotationView* view = [[LocalCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"LocalCalloutMapAnnotationView"] ;
+        LocalCalloutMapAnnotationView* view = (LocalCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"LocalCalloutMapAnnotationView"];
+        if(!view)
+        {
+            view = [[LocalCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"LocalCalloutMapAnnotationView"] ;
+        }
+
         view.parentAnnotationView = self.selectedAnnotationView;
         view.mapView = self.mapView;
         view.delegate = self;
+        [view loadData];
         return view;
     }
     else if([annotation isKindOfClass:[CityMapAnnotation class]]){
-//        CityCalloutMapAnnotationView* view = (CityCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CityCalloutMapAnnotationView"];
-//        if(!view)
-//        {
-//            isReused = NO;
-//            view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
-//        }
-        CityCalloutMapAnnotationView* view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
+        CityCalloutMapAnnotationView* view = (CityCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CityCalloutMapAnnotationView"];
+        if(!view)
+        {
+            view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
+        }
         view.parentAnnotationView = self.selectedAnnotationView;
         view.mapView = self.mapView;
         view.delegate = self;
         
         CityMapAnnotation* ano = (CityMapAnnotation*)annotation;
         view.cityInfo = ano.city;
-        //if(!isReused)
-            [view uiInit];
+        [view loadData];
         return view;
     }
     else if ([annotation isKindOfClass:[CalloutMapAnnotation class]] ) {
-        SiteCalloutMapAnnotationView *calloutMapAnnotationView = (SiteCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"CalloutAnnotation"];
+        SiteCalloutMapAnnotationView *calloutMapAnnotationView = (SiteCalloutMapAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"SiteCalloutMapAnnotationView"];
 		if (!calloutMapAnnotationView) {
             isReused = NO;
-			calloutMapAnnotationView = [[SiteCalloutMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CalloutAnnotation"] ;
+			calloutMapAnnotationView = [[SiteCalloutMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SiteCalloutMapAnnotationView"] ;
 		}
         
         CalloutMapAnnotation* calloutAno = (CalloutMapAnnotation*)annotation;
@@ -594,14 +601,13 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
 		calloutMapAnnotationView.parentAnnotationView = self.selectedAnnotationView;
 		calloutMapAnnotationView.mapView = self.mapView;
         calloutMapAnnotationView.delegate = self;
-        if(!isReused)
-            [calloutMapAnnotationView uiInit];
+        [calloutMapAnnotationView loadData];
 		return calloutMapAnnotationView;
 	}
     else if ([annotation isKindOfClass:[BasicMapAnnotation class]]) {
-        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"BasicMapAnnotation"];
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"BasicMapAnnotationView"];
         if(!annotationView){
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"BasicMapAnnotation"] ;
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"BasicMapAnnotationView"] ;
         }
 		annotationView.canShowCallout = NO;
 		annotationView.pinColor = MKPinAnnotationColorGreen;
@@ -672,7 +678,7 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
                     [self addAnnotation:[BasicMapAnnotation class]];
                 });
             }
-        } userID:[UserDataManager sharedManager].currUser orgCode:nil];
+        } userID:[UserDataManager sharedManager].currUser orgCode:city.org_code];
 
 
     }

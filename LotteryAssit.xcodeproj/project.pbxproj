@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E71424CD1977A2F7004232EA /* GIEleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71424CC1977A2F7004232EA /* GIEleViewController.m */; };
 		E71C1A9F1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */; };
+		E7919E0B19ADCBD200A1F422 /* citys.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7919E0A19ADCBD200A1F422 /* citys.txt */; };
 		E793BA4D197C9C990083B999 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E793BA29197C9C990083B999 /* AFHTTPRequestOperation.m */; };
 		E793BA4E197C9C990083B999 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E793BA2B197C9C990083B999 /* AFHTTPRequestOperationManager.m */; };
 		E793BA4F197C9C990083B999 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E793BA2D197C9C990083B999 /* AFHTTPSessionManager.m */; };
@@ -84,10 +84,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E71424CB1977A2F7004232EA /* GIEleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIEleViewController.h; sourceTree = "<group>"; };
-		E71424CC1977A2F7004232EA /* GIEleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIEleViewController.m; sourceTree = "<group>"; };
 		E71C1A9D1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCalloutMapAnnotationView.h; sourceTree = "<group>"; };
 		E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCalloutMapAnnotationView.m; sourceTree = "<group>"; };
+		E7919E0A19ADCBD200A1F422 /* citys.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = citys.txt; path = resource/citys.txt; sourceTree = "<group>"; };
 		E793BA28197C9C990083B999 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E793BA29197C9C990083B999 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E793BA2A197C9C990083B999 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -296,8 +295,6 @@
 				E7ABC5FF1976250700FFB45F /* CalloutMapAnnotationView.m */,
 				E7ABC6001976250700FFB45F /* SiteCalloutMapAnnotationView.h */,
 				E7ABC6011976250700FFB45F /* SiteCalloutMapAnnotationView.m */,
-				E71424CB1977A2F7004232EA /* GIEleViewController.h */,
-				E71424CC1977A2F7004232EA /* GIEleViewController.m */,
 				E71C1A9D1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.h */,
 				E71C1A9E1978FFA4005B2CCA /* LocalCalloutMapAnnotationView.m */,
 				E7D0DE1A1990C2F200B0DD23 /* CityCalloutMapAnnotationView.h */,
@@ -309,6 +306,7 @@
 		E7ABC6091976599C00FFB45F /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				E7919E0A19ADCBD200A1F422 /* citys.txt */,
 				E7A7BC521980B9C200A096AA /* UIButtonBarPlayLandscape2@2x.png */,
 				E7ABC61F197672C600FFB45F /* sitestatus */,
 				E7ABC60A19766C5600FFB45F /* asynchrony-logo-small.png */,
@@ -559,6 +557,7 @@
 				E7ABC62B197672C600FFB45F /* dotsz_proc_del.png in Resources */,
 				E7CC318B19736740002A0A4C /* Images.xcassets in Resources */,
 				E7ABC629197672C600FFB45F /* dotsz_proc_add.png in Resources */,
+				E7919E0B19ADCBD200A1F422 /* citys.txt in Resources */,
 				E7ABC62A197672C600FFB45F /* dotsz_proc_change.png in Resources */,
 				E7ABC60F19766C5600FFB45F /* flag.png in Resources */,
 			);
@@ -595,7 +594,6 @@
 				E7ABC6081976257300FFB45F /* GIMapViewController.m in Sources */,
 				E793BA50197C9C990083B999 /* AFNetworkReachabilityManager.m in Sources */,
 				E793BA58197C9C990083B999 /* UIAlertView+AFNetworking.m in Sources */,
-				E71424CD1977A2F7004232EA /* GIEleViewController.m in Sources */,
 				E793BA55197C9C990083B999 /* AFURLSessionManager.m in Sources */,
 				E7CC31F7197369FB002A0A4C /* GSPageCtrViewController.m in Sources */,
 				E793BA4E197C9C990083B999 /* AFHTTPRequestOperationManager.m in Sources */,

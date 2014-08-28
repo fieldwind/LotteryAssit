@@ -9,7 +9,6 @@
 #import "SiteCalloutMapAnnotationView.h"
 #import "UIImageView+AFNetworking.h"
 #import "GSProjectHeader.h"
-#import "GIEleViewController.h"
 #import "UserDataManager.h"
 
 @interface SiteCalloutMapAnnotationView(){
@@ -50,7 +49,6 @@
 
 
 
-@property (nonatomic,retain) GSPageCtrViewController* pageCtrVC;
 @end
 
 @implementation SiteCalloutMapAnnotationView
@@ -68,7 +66,7 @@
 	if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
         UITapGestureRecognizer* tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes:)];
         [self addGestureRecognizer:tapGes];
-        //self.notFitMap = YES;
+        [self uiInit];
 	}
 	return self;
 }
@@ -125,46 +123,19 @@
     imgHeight = 180.0f;
     labelHeight = 20.0f;
     labelIndx = 0;
-   
-    
-#if 0
-    UIImage *image = [UIImage imageNamed:@"asynchrony-logo-small.png"];
-    self.imageView = [[UIImageView alloc] initWithImage:image] ;
-    self.imageView.frame = CGRectMake(offsetX, offsetY, width, imgHeight); //asynchronyLogoView.frame.size.height
-    NSString* imageid = [self.siteInfo.imagelist objectAtIndex:0];
-    
-    [[UserDataManager sharedManager]accessImage:^(NSData *img, NSError *error) {
-        //set image
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIImage* image = [UIImage imageWithData:img];
-            self.imageView.image = image;
-        });
-    } imageid:imageid];
-    
-    [self.contentView addSubview:self.imageView];
-
-
-#endif
-    
+  
     //use webview.
     self.imageWebView = [[UIWebView alloc]initWithFrame:CGRectMake(offsetX, offsetY, self.contentWidth-offsetX*2-30, imgHeight)]; //-30 is the offset for contentview.
     self.imageWebView.backgroundColor = [UIColor yellowColor];
-    NSString* imageURL = [NSString stringWithFormat:@"%@oa/shenji/ipad/lunbo.html?id=%@",Server_BaseURL,self.siteInfo.siteID];
-    NSURL *requestURL = [NSURL URLWithString:imageURL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:requestURL];
+    
     [self.contentView addSubview:self.imageWebView];
     
-    [self.imageWebView loadRequest:request];
-    
-    
-
     
     NSString* str = nil;
     
     str = [NSString stringWithFormat:@"编号: %@",self.siteInfo.logical_number];
     self.IdLabel = [self createLabel1:str];
     str = [NSString stringWithFormat:@"电话: %@",self.siteInfo.phone];
-    //str = [NSString stringWithFormat:@"电话: 13322221111"];
     self.telLabel = [self createLabel2:str];
     
     str = [NSString stringWithFormat:@"地址: %@", self.siteInfo.address];
@@ -180,9 +151,6 @@
     
     str = [NSString stringWithFormat:@"开机日期: %@", self.siteInfo.create_date];
     self.startLabel = [self createLabel:str];
-    
-//    str = [NSString stringWithFormat:@"销售员: %@", self.siteInfo.Per_name];
-//    self.salerLabel = [self createLabel:str];
     
     str = [NSString stringWithFormat:@"上报日期: %@", self.siteInfo.pos_date];
     self.submitLabel = [self createLabel:str];
@@ -226,6 +194,32 @@
     
     [self.contentView addSubview:self.navLabel];
 
+}
+
+-(void)loadData
+{
+    NSString* imageURL = [NSString stringWithFormat:@"%@oa/shenji/ipad/lunbo.html?id=%@",Server_BaseURL,self.siteInfo.siteID];
+    NSURL *requestURL = [NSURL URLWithString:imageURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:requestURL];
+    [self.imageWebView loadRequest:request];
+    
+    self.IdLabel.text = [NSString stringWithFormat:@"编号: %@",self.siteInfo.logical_number];
+    self.telLabel.text = [NSString stringWithFormat:@"电话: %@",self.siteInfo.phone];
+    
+    self.addressLabel.text = [NSString stringWithFormat:@"地址: %@", self.siteInfo.address];
+    
+    self.nameLabel.text = [NSString stringWithFormat:@"代销者: %@", self.siteInfo.Per_name];
+    self.phoneLabel.text = [NSString stringWithFormat:@"电话: %@", self.siteInfo.link_phone];
+    
+    self.cardNoLabel.text = [NSString stringWithFormat:@"身份证号: %@", self.siteInfo.card_no];
+    
+    self.startLabel.text = [NSString stringWithFormat:@"开机日期: %@", self.siteInfo.create_date];
+    self.submitLabel.text = [NSString stringWithFormat:@"上报日期: %@", self.siteInfo.pos_date];
+    
+    self.fromTxt.text = @"出发地";
+    self.goLabel.text = @"到";
+    self.toTxt.text = @"当前位置";
+    self.navLabel.text = @"确定";
 }
 
 #pragma mark - Action

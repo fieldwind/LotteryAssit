@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "GSProjectHeader.h"
 #import "WSClass.h"
+#import "NSString+JSON.h"
 
 @implementation UserDataManager
 
@@ -86,6 +87,9 @@
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     NSString* url = [NSString stringWithFormat:@"%@oa_ipad!getsites.action",Server_BaseURL];
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:userID,@"useid", orgCode,@"org_code", nil];
+    
+   
+    
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         WSSites* sites = [[WSSites alloc]initFromObj:responseObject];
         response(sites.siteArray,nil);
@@ -160,6 +164,19 @@
          orgCode,@"org_code",
          nil];
     }
+    
+    
+
+    
+//    //dbg code
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"citys" ofType:@"txt"];
+//    NSString* respStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
+//
+//    id responseObject = [respStr JSONValue];
+//    WSCitys* citys = [[WSCitys alloc]initFromObj:responseObject];
+//    response(citys,nil);
+//    return;
+    
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
         WSCitys* citys = [[WSCitys alloc]initFromObj:responseObject];
         response(citys,nil);

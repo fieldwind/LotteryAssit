@@ -8,6 +8,11 @@
 
 #import "CityCalloutMapAnnotationView.h"
 
+@interface CityCalloutMapAnnotationView()
+
+
+@end
+
 @implementation CityCalloutMapAnnotationView{
     CGFloat offsetX ;
     CGFloat offsetY ;
@@ -15,6 +20,7 @@
     CGFloat labelHeight ;
     long labelIndx ;
     CGFloat width;
+    UILabel* label;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -37,54 +43,100 @@
 
 - (id) initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
 	if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
+        self.offsetFromParent = CGPointMake(1, -1); //this works for MKPinAnnotationView
+        
         self.contentBkgColor = HexColor2UIColor(192, 119, 202, 1); //[UIColor orangeColor];
         self.notFitMap = YES;
         UITapGestureRecognizer* tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes:)];
         [self addGestureRecognizer:tapGes];
-       // [self uiInit];
+        [self uiInit];
 	}
 	return self;
 }
 
 
+- (void)prepareFrameSize {
+	CGRect frame = self.frame;
+	CGFloat height =	self.contentHeight +
+	CalloutMapAnnotationViewContentHeightBuffer +
+	CalloutMapAnnotationViewBottomShadowBufferSize -
+	self.offsetFromParent.y;
+	
+    frame.size = CGSizeMake(self.contentWidth, height);
+    
+	self.frame = frame;
+}
 
+- (void)prepareContentFrame {
+	CGRect contentFrame = CGRectMake(self.bounds.origin.x,
+									 self.bounds.origin.y + 3,
+									 self.bounds.size.width,
+									 self.contentHeight);
+    
+    
+	self.contentView.frame = contentFrame;
+}
+
+- (void)prepareOffset {
+	CGPoint parentOrigin = [self.mapView convertPoint:self.parentAnnotationView.frame.origin
+											 fromView:self.parentAnnotationView.superview];
+	
+    //	CGFloat xOffset =	(self.mapView.frame.size.width / 2) -
+    //						(parentOrigin.x + self.offsetFromParent.x);
+    CGFloat xOffset =	(self.contentWidth / 2) - (parentOrigin.x + self.offsetFromParent.x);
+    
+	
+	//Add half our height plus half of the height of the annotation we are tied to so that our bottom lines up to its top
+	//Then take into account its offset and the extra space needed for our drop shadow
+	CGFloat yOffset = -(self.frame.size.height / 2 +
+						self.parentAnnotationView.frame.size.height / 2) +
+    self.offsetFromParent.y +
+    CalloutMapAnnotationViewBottomShadowBufferSize;
+	
+	self.centerOffset = CGPointMake(xOffset, yOffset);
+}
+
+#pragma mark--
 
 -(void)uiInit
 {
-    self.contentHeight = 28.0f;
-    self.contentWidth = 70.0f;
+    self.contentHeight = 20.0f;
+    self.contentWidth = 50.0f;
     
-    offsetX = 5.0f;
-    offsetY = 5.0f;
-    labelHeight = 25.0f;
+    offsetY = 1.0f;
+    labelHeight = 18.0f;
     labelIndx = 0;
     
     
-    UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(0, offsetY, self.contentWidth-offsetX*3, labelHeight)];
+    label = [[UILabel alloc]initWithFrame:CGRectMake(0, offsetY, self.contentWidth, labelHeight)];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextColor:[UIColor blackColor]];
     if(!self.cityInfo)
         label.text = @"55"; //
     else
         label.text = self.cityInfo.betting_num;
+    [label setFont:[UIFont systemFontOfSize:14.0]];
     [label setTextAlignment:NSTextAlignmentCenter];
     
     [self.contentView addSubview:label];
     
 }
 
+-(void)loadData
+{
+    label.text = self.cityInfo.betting_num;
 
+}
 
 
 - (void)drawRect:(CGRect)rect {
     
 	CGFloat stroke = 1.0;
-	CGFloat radius = 2.0; //7.0;
+	CGFloat radius = 3.0; //2.0;
 	CGMutablePathRef path = CGPathCreateMutable();
 	UIColor *color;
 	CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGFloat parentX = self.contentWidth-40; //[self relativeParentXPosition];
 	
     
 	rect = self.bounds;
@@ -99,16 +151,20 @@
 	CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,
 				 radius, M_PI, M_PI / 2, 1);
     
+    //draw bottom 4 line
+    CGFloat triangle = 6.0f;
+    CGFloat triangleWidth = 16.0f;
+    CGFloat triangleOffsetX = (rect.size.width-2*radius- triangleWidth) / 2;
+    CGPathAddLineToPoint(path, NULL, rect.origin.x+radius+triangleOffsetX,
+						 rect.origin.y + rect.size.height);
+	CGPathAddLineToPoint(path, NULL, rect.origin.x+radius+triangleOffsetX + (triangle/2),
+						 rect.origin.y + rect.size.height + triangle);
+	CGPathAddLineToPoint(path, NULL, rect.origin.x+radius+triangleOffsetX + triangleWidth ,
+						 rect.origin.y + rect.size.height);
+    CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width - radius,
+						 rect.origin.y + rect.size.height);
+
     
-    CGPathAddLineToPoint(path, NULL, parentX - 15,
-						 rect.origin.y + rect.size.height);
-	CGPathAddLineToPoint(path, NULL, parentX,
-						 rect.origin.y + rect.size.height + 15);
-	CGPathAddLineToPoint(path, NULL, parentX + 15,
-						 rect.origin.y + rect.size.height);
-    
-	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width - radius,
-						 rect.origin.y + rect.size.height);
 	CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius,
 				 rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
 	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y + radius);

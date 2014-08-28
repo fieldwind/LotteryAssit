@@ -78,6 +78,12 @@
     
 }
 
+-(void)loadData
+{
+    self.distanceTxt.text = @"500";
+    self.distButton.text = @"确定";
+}
+
 #pragma mark - Action
 -(void)tapGes:(id)sender
 {
