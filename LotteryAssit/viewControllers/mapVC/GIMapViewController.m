@@ -55,6 +55,7 @@ typedef enum {
 @property (nonatomic, strong) WSCity* town;
 @property (nonatomic, strong) UIButton* cityBtn;
 @property (nonatomic, strong) UIButton* townBtn;
+@property (nonatomic, strong) UIButton* titleBtn;
 
 @end
 
@@ -136,6 +137,8 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
             self.cityBtn = button;
         }else if(i == 2){
             self.townBtn = button;
+        }else if(i == 3){
+            self.titleBtn = button;
         }
         
         [leftView addSubview:button];
@@ -759,7 +762,10 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
             
             routeDetails = response.routes.lastObject;
             [self.mapView addOverlay:routeDetails.polyline];
-            self.navigationItem.title = [NSString stringWithFormat:@"距离目的地: %.1f米",routeDetails.distance];
+            
+            NSString* titleString = [NSString stringWithFormat:@"距离目的地: %.1f米",routeDetails.distance];
+            [self.titleBtn setTitle:titleString forState:UIControlStateNormal];
+
 //            self.destinationLabel.text = [placemark.addressDictionary objectForKey:@"Street"];
 //            self.distanceLabel.text = [NSString stringWithFormat:@"%0.1f Miles", routeDetails.distance/1609.344];
 //            self.transportLabel.text = [NSString stringWithFormat:@"%u" ,routeDetails.transportType];
@@ -785,7 +791,8 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
 -(void)resetRouteStatus
 {
     status = rs_idle;
-    self.navigationItem.title = @"站点浏览";
+    //self.navigationItem.title = @"站点浏览";
+    [self.titleBtn setTitle:@"站点浏览" forState:UIControlStateNormal];
     
     [self clearRoute];
 }
