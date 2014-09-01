@@ -124,6 +124,7 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
         if(i == 3){
             offX = 420;
             fontSize =  20.0;
+            labelWidth = 220;
         }
         UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(offX, 10, labelWidth, 20)];
         [button setTitle:str forState:UIControlStateNormal];
@@ -558,6 +559,8 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
         if(!view)
         {
             view = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CustomAnnotationView"] ;
+        }else{
+            view.annotation = annotation;
         }
 		view.canShowCallout = NO;
 		view.pinColor = MKPinAnnotationColorGreen;
@@ -569,6 +572,8 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
         if(!view)
         {
             view = [[LocalCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"LocalCalloutMapAnnotationView"] ;
+        }else{
+            view.annotation = annotation;
         }
 
         view.parentAnnotationView = self.selectedAnnotationView;
@@ -582,6 +587,8 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
         if(!view)
         {
             view = [[CityCalloutMapAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:@"CityCalloutMapAnnotationView"] ;
+        }else{
+            view.annotation = annotation;
         }
         view.parentAnnotationView = self.selectedAnnotationView;
         view.mapView = self.mapView;
@@ -597,7 +604,9 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
 		if (!calloutMapAnnotationView) {
             isReused = NO;
 			calloutMapAnnotationView = [[SiteCalloutMapAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"SiteCalloutMapAnnotationView"] ;
-		}
+		}else{
+            calloutMapAnnotationView.annotation = annotation;
+        }
         
         CalloutMapAnnotation* calloutAno = (CalloutMapAnnotation*)annotation;
         calloutMapAnnotationView.siteInfo = calloutAno.site;
@@ -611,6 +620,9 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
         MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"BasicMapAnnotationView"];
         if(!annotationView){
             annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"BasicMapAnnotationView"] ;
+        }
+        else{
+            annotationView.annotation = annotation;
         }
 		annotationView.canShowCallout = NO;
 		annotationView.pinColor = MKPinAnnotationColorGreen;
@@ -700,7 +712,7 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
     desPos.longitude = site.lng;
     status = rs_routing;
     
-//    [self route];
+    //[self route];
 }
 
 -(void)triggerDistanceBtn:(double)distance annotation:(id)annotation

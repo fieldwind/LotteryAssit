@@ -739,7 +739,7 @@
 				INFOPLIST_FILE = "LotteryAssit/LotteryAssit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f3127c04-73d8-4c5c-b51c-e7ae6e292499";
+				PROVISIONING_PROFILE = "a50cf49d-9209-45cd-8d09-30f3dcc356a5";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -751,15 +751,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LotteryAssit/LotteryAssit.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: frank weng (RX89Z3759D)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: frank weng (RX89Z3759D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: frank weng (RX89Z3759D)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Zhejiang Hongcheng Computer systems Co.,Ltd";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Zhejiang Hongcheng Computer systems Co.,Ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zhejiang Hongcheng Computer systems Co.,Ltd";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LotteryAssit/LotteryAssit-Prefix.pch";
 				INFOPLIST_FILE = "LotteryAssit/LotteryAssit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f3127c04-73d8-4c5c-b51c-e7ae6e292499";
+				PROVISIONING_PROFILE = "a50cf49d-9209-45cd-8d09-30f3dcc356a5";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
