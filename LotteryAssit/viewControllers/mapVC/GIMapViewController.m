@@ -56,6 +56,7 @@ typedef enum {
 @property (nonatomic, strong) UIButton* cityBtn;
 @property (nonatomic, strong) UIButton* townBtn;
 @property (nonatomic, strong) UIButton* titleBtn;
+@property (nonatomic, strong) UIButton* positionBtn;
 
 @end
 
@@ -110,10 +111,10 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
     CGFloat offsetY = 0;
     CGFloat labelWidth = 55;
     
-    UIView* leftView = [[UIView alloc]initWithFrame:CGRectMake(0, offsetY, 924, 44)];
+    UIView* leftView = [[UIView alloc]initWithFrame:CGRectMake(0, offsetY, 964, 44)];
     
     
-    NSArray *segArray = @[@"浙江省",@"",@"",@"站点浏览"];
+    NSArray *segArray = @[@"浙江省",@"",@"",@"站点浏览",@"我的位置"];
     long i = 0;
     for(NSString* str in segArray){
         CGFloat offX = offsetX+labelWidth*i;
@@ -125,6 +126,10 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
             offX = 420;
             fontSize =  20.0;
             labelWidth = 220;
+        }else if(i == 4){
+            offX = 850;
+            fontSize =  16.0;
+            labelWidth = 100;
         }
         UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(offX, 10, labelWidth, 20)];
         [button setTitle:str forState:UIControlStateNormal];
@@ -140,6 +145,8 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
             self.townBtn = button;
         }else if(i == 3){
             self.titleBtn = button;
+        }else if(i == 4){
+            self.positionBtn = button;
         }
         
         [leftView addSubview:button];
@@ -175,6 +182,11 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
             
         case 2:
             [self trigerGotoCity:self.town];
+            break;
+            
+        case 4:
+            if(rs_routing != status)
+                [self locatePosition];
             break;
             
         default:
@@ -349,12 +361,15 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
 }
 
 
--(void)initLocationManager
+-(void)locatePosition
 {
     //init localmanager
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy =  kCLLocationAccuracyBest;//kCLLocationAccuracyBestForNavigation; //kCLLocationAccuracyHundredMeters
+    if(!self.locationManager){
+        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy =  kCLLocationAccuracyBest;//kCLLocationAccuracyBestForNavigation; //kCLLocationAccuracyHundredMeters
+    }
+    
     [self.locationManager startUpdatingLocation];
 }
 
@@ -705,7 +720,7 @@ CLLocationCoordinate2D coordinateHz = {30.18,120.16}; //杭州
 {
     [self resetRouteStatus];
     
-    [self initLocationManager];
+    [self locatePosition];
 
     WSSite* site = (WSSite*)siteInfo;
     desPos.latitude = site.lat;

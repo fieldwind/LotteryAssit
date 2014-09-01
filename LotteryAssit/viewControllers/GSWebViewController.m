@@ -194,35 +194,24 @@
 
 
 #if 1
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [[UserDataManager sharedManager]accessSites:^(NSArray *array, NSError *error) {
-                if(!error && array){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        NSString* code = @"杭州";
-//                        NSRange range = [request.URL.absoluteString rangeOfString:@"org_name="];
-//                        if(NSNotFound != range.location){
-//                            NSString* fullcodeString = [request.URL.absoluteString substringFromIndex:range.location];
-//                            if(fullcodeString){
-//                                code = [fullcodeString substringFromIndex:[@"org_name=" length]];
-//                            }
-//                        }
-                        
-                        
-                        
-//                        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
-//                        GIMapViewController* mapVC = [sb instantiateViewControllerWithIdentifier:@"GIMapViewController"];
-//                        mapVC.dateSource = array;
-//                        [self.navigationController pushViewController:mapVC animated:YES];
-                        
-                        
-                        
-                        [self performSegueWithIdentifier:@"web2Map" sender:[NSArray arrayWithObjects:array,nil]];
+        [self performSegueWithIdentifier:@"web2Map" sender:[NSArray arrayWithObjects:nil,nil]];
 
-                    });
-                }
-            } userID:[UserDataManager sharedManager].currUser orgCode:nil];
-            
-        });
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [[UserDataManager sharedManager]accessSites:^(NSArray *array, NSError *error) {
+//                if(!error && array){
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+////                        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
+////                        GIMapViewController* mapVC = [sb instantiateViewControllerWithIdentifier:@"GIMapViewController"];
+////                        mapVC.dateSource = array;
+////                        [self.navigationController pushViewController:mapVC animated:YES];
+//                        
+//                        [self performSegueWithIdentifier:@"web2Map" sender:[NSArray arrayWithObjects:array,nil]];
+//
+//                    });
+//                }
+//            } userID:[UserDataManager sharedManager].currUser orgCode:nil];
+//            
+//        });
         
 #endif
         return NO;
@@ -262,10 +251,9 @@
     // Get the new view controller using [segue destinationViewController].
     if([segue.identifier isEqualToString:@"web2Map"]){
         self.navigationController.navigationBarHidden = NO;
-        GIMapViewController* mapVC = [segue destinationViewController];
-        NSArray* params = (NSArray*)sender;
-        mapVC.siteArray = [params objectAtIndex:0];
-//        mapVC.orgName = [params objectAtIndex:1];
+//        GIMapViewController* mapVC = [segue destinationViewController];
+//        NSArray* params = (NSArray*)sender;
+//        mapVC.siteArray = [params objectAtIndex:0];
     }
 }
 
